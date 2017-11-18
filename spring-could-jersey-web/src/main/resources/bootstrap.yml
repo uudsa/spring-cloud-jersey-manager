@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: spring-cloud-web
+  http:
+      encoding: { charset: UTF-8, enable: true, force: true }
+info:
+  component: spring-cloud-web
