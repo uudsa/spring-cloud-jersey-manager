@@ -1,0 +1,30 @@
+server:
+  port: 3333
+
+
+eureka:
+  instance:
+      preferIpAddress: true
+      instanceId: ${spring.cloud.client.hostname}:${server.port}
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+    healthcheck:
+      enabled: false
+    serviceUrl:
+      defaultZone: http://127.0.0.1:10000/eureka/
+#    registerWithEureka: true
+#    fetchRegistry: true
+#    healthcheck:
+#      enabled: false
+#    serviceUrl:
+#      defaultZone: http://127.0.0.1:7777/eureka/
+#eureka:
+#  instance:
+#    hostname: 127.0.0.1
+#  client:
+#    register-with-eureka: false
+#    fetch-registry: false
+#    service-url: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+
