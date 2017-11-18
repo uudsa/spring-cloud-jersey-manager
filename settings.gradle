@@ -1,0 +1,4 @@
+rootProject.name = 'spring-cloud-jersey-manager'
+include 'spring-cloud-eureka'
+include 'spring-cloud-jersey'
+include 'spring-cloud-jersey-server'

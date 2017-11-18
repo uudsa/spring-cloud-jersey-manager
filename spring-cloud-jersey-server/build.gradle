@@ -1,0 +1,50 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.8.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath "io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE"
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+	configurations {
+		compile.exclude module: "spring-boot-starter-tomcat"
+		compile.exclude module: "jsr311-api"
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.meiaida'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+ext {
+	springCloudServicesVersion = '1.5.0.RELEASE'
+	springCloudVersion = 'Dalston.SR4'
+}
+
+dependencies {
+	compile ("org.springframework.boot:spring-boot-starter-undertow")
+	compile('org.springframework.cloud:spring-cloud-starter-eureka')
+	compile('org.springframework.boot:spring-boot-starter-jersey')
+//	compile('org.springframework.boot:spring-boot-starter-actuator')
+//	compile('io.pivotal.spring.cloud:spring-cloud-services-starter-service-registry')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "io.pivotal.spring.cloud:spring-cloud-services-dependencies:${springCloudServicesVersion}"
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
