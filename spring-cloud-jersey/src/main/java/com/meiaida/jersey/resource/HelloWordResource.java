@@ -6,6 +6,8 @@
 package com.meiaida.jersey.resource;
 
 import com.meiaida.jersey.resource.feignClient.SeyHelloFeign;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -24,6 +26,7 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/ok")
 @Produces(MediaType.APPLICATION_JSON)
+@Api(value = "test接口", description = "test接口", produces = MediaType.APPLICATION_JSON)
 public class HelloWordResource {
 
     Logger logger = LoggerFactory.getLogger(HelloWordResource.class);
@@ -32,7 +35,7 @@ public class HelloWordResource {
 
     @GET
     @Path("/seyHello")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "hello", notes = "hello")
     public void seyHello(){
         logger.info("kaishi");
         System.out.println(seyHelloFeign.seyHello("tim").getBody().toString());

@@ -22,6 +22,8 @@ public class JerseyConfig extends ResourceConfig {
         JacksonJaxbJsonProvider provider = new JacksonJaxbJsonProvider();
         provider.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         register(provider);
+        // 注册异常处理类和swagger相关Provider
+        packages("com.wordnik.swagger.jersey.listing");
         //想让jersey托管的部分需要加入扫描,或者使用register指定托管类也可以
         String packageName = JerseyConfig.class.getPackage().getName();
         packages(packageName.substring(0, packageName.lastIndexOf('.')) +".resource");
